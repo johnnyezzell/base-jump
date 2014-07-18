@@ -19,7 +19,7 @@ module.exports = function(grunt) {
             },
             build: {
                 files: [{
-                    src: ['src/*.js'],
+                    src: ['src/*/**.js'],
                     dest: 'dist/<%= pkg.name %>.js'
                 }]
             }
@@ -34,16 +34,13 @@ module.exports = function(grunt) {
             }
         },
         
-        simplemocha: {
-            options: {
-                globals: ['expect'],
-                timeout: 3000,
-                ignoreLeaks: false,
-                ui: 'bdd',
-                reporter: 'spec',
-                colors: true
-            },
-            all: { src: ['specs/**/*.js'] }
+        jasmine: {
+            test: {
+                src: 'src/**/*.js',
+                options: {
+                    specs: 'specs/**/*.js'
+                }
+            }
         }
     });
     
@@ -51,9 +48,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-simple-mocha');
-    grunt.loadNpmTasks('should');
+    grunt.loadNpmTasks('grunt-contrib-jasmine');
   
     grunt.registerTask('default',
-                       ['jshint', 'simplemocha', 'concat', 'uglify']);
+                       ['jshint', 'jasmine', 'concat', 'uglify']);
 };

@@ -1,13 +1,10 @@
-var should = require('should');
-
-require('../src/array.js');
-
 describe('base-camp Array extentions', function() {
     
     var testArray = [];
     
     it('should match the expected interface', function() {
-        (typeof testArray.insertBefore === 'function').should.be.true;
+        expect(typeof testArray.insertBefore === 'function').toBe(true);
+        expect(typeof testArray.insertAfter === 'function').toBe(true);
     });
     
     describe('insertBefore(index, item)', function() {
@@ -16,26 +13,58 @@ describe('base-camp Array extentions', function() {
 
             testArray = ['testValue1'];        
 
-            (testArray.length).should.equal(1);
+            expect(testArray.length).toEqual(1);
 
             testArray.insertBefore(0, 'testValue2');
 
-            testArray.length.should.equal(2);
-            testArray[0].should.equal('testValue2');
-            testArray[1].should.equal('testValue1');
+            expect(testArray.length).toEqual(2);
+            expect(testArray[0]).toEqual('testValue2');
+            expect(testArray[1]).toEqual('testValue1');
+            
         });
 
-        it('should fail to insert if index does not exist', function() {
+        it('should fail to insert an item if the index does not exist', function() {
 
             testArray = ['testValue1'];
 
-            try {
-                testArray.insertBefore(10, 'testValue2');
-            }
-            catch(error) {
-                error.should.be.true;
-                console.log(error);
-            }
+            expect(function() {
+                testArray.insertBefore(10, 'test')
+            }).toThrow(new Error("Index out of range"));
+            
+            expect(function() {
+                testArray.insertBefore(-1, 'test')
+            }).toThrow(new Error("Index out of range"));
+        });
+        
+    });
+    
+    describe('insertAfter(index, item)', function() {
+        
+        it('should insert an item after the specified index if valid', function() {
+           
+            testArray = ['testValue1'];
+            
+            expect(testArray.length).toEqual(1);
+            
+            testArray.insertAfter(0, 'testValue2');
+            
+            expect(testArray.length).toEqual(2);
+            expect(testArray[0]).toEqual('testValue1');
+            expect(testArray[1]).toEqual('testValue2');
+            
+        });
+        
+        it('should fail to insert an item if the index does not exist', function() {
+            
+            testArray = [];
+            
+            expect(function() {
+                testArray.insertBefore(2, 'test')
+            }).toThrow(new Error("Index out of range"));
+
+            expect(function() {
+                testArray.insertBefore(-1, 'test')
+            }).toThrow(new Error("Index out of range"));
 
         });
         
