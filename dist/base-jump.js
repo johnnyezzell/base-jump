@@ -19,7 +19,7 @@ Array.prototype.insertAfter = function(index, item) {
     }
     this.splice(index + 1, 0, item);
 };
-;
+
 var BJ = function(obj) {
     if (obj instanceof BJ) return obj;
     if (!(this instanceof BJ)) return new BJ(obj);

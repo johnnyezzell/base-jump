@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         
         concat: {
             options: {
-                separator: ';\n',
+                separator: '\n',
                 banner: banner
             },
             build: {
@@ -30,7 +30,9 @@ module.exports = function(grunt) {
                 banner: banner   
             },
             build: {
-                'dist/<%= pkg.name %>.min.js': ['dist/<%= pkg.name %>.js']
+                files: {
+                    'dist/<%= pkg.name %>.min.js': ['dist/<%= pkg.name %>.js']
+                }
             }
         },
         
