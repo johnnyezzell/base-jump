@@ -40,7 +40,28 @@ module.exports = function(grunt) {
             test: {
                 src: 'src/**/*.js',
                 options: {
-                    specs: 'specs/**/*.js'
+                    specs: 'specs/**/*.js',
+                    template: require('grunt-template-jasmine-istanbul'),
+                    templateOptions: {
+                        coverage: 'coverage/coverage.json',
+                        report: [
+                            {
+                                type: 'text-summary'                                
+                            },
+                            {
+                                type: 'html',
+                                options: {
+                                    dir: 'coverage'
+                                }
+                            }
+                        ],
+                        thresholds: {
+                            lines: 75,
+                            statements: 75,
+                            branches: 75,
+                            functions: 90
+                        }
+                    }
                 }
             }
         }

@@ -59,11 +59,11 @@ describe('base-camp Array extentions', function() {
             testArray = [];
             
             expect(function() {
-                testArray.insertBefore(2, 'test')
+                testArray.insertAfter(2, 'test')
             }).toThrow(new Error("Index out of range"));
 
             expect(function() {
-                testArray.insertBefore(-1, 'test')
+                testArray.insertAfter(-1, 'test')
             }).toThrow(new Error("Index out of range"));
 
         });

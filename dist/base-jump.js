@@ -1,6 +1,6 @@
 /*
 base-jump 0.0.0 - A leap forward for your base JavaScript objects
-Built on 2014-07-18
+Built on 2014-07-19
 */
 
 // Insert an item in an array before the index passed
@@ -22,11 +22,7 @@ Array.prototype.insertAfter = function(index, item) {
 };
 
 // Global BJ object
-var BJ = function(obj) {
-    if (obj instanceof BJ) return obj;
-    if (!(this instanceof BJ)) return new BJ(obj);
-    this._wrapped = obj;
-};
+var BJ = BJ || {};
 
 // Returns true if value passed is a function
 BJ.isFunction = function(obj) {
