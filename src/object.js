@@ -2,8 +2,10 @@
 // methods should never be created.  However, if
 // someone wants to create their over method on
 // the object with the same name, they can overwrite
-// this base-jump method easily.
-
+// this base-jump method easily. 
+//
+// Sample of overwritting object proptotype method.
+// var myObject.copy = function() {...};
 (function() {
 
     function copyObject(sourceObject) {
