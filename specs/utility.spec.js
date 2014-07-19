@@ -1,4 +1,6 @@
-describe('base-camp Utility functions', function() {
+'use strict'; 
+
+describe('base-camp Utility functions', function() { 
     
     it('should match the expected interface', function() {
         expect(BJ).toBeDefined();

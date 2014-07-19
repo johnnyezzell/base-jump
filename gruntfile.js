@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         
         concat: {
             options: {
-                separator: '\n',
+                separator: '\n\n',
                 banner: banner
             },
             build: {
@@ -41,6 +41,7 @@ module.exports = function(grunt) {
                 src: 'src/**/*.js',
                 options: {
                     specs: 'specs/**/*.js',
+                    keepRunner: true,
                     template: require('grunt-template-jasmine-istanbul'),
                     templateOptions: {
                         coverage: 'coverage/coverage.json',
