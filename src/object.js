@@ -32,4 +32,23 @@
         enumerable: false
     });
     
+    // Check to see if the current object is an Array
+    Object.defineProperty(Object.prototype, 'isArray', {    
+        value: function() {
+            return Object.prototype.toString.call(this) === "[object Array]";
+        },
+        writable: true,
+        configurable: true,
+        enumerable: false
+    });
+    
+    Object.defineProperty(Object.prototype, 'isFunction', {
+        value: function() {
+            return typeof this === 'function';   
+        },
+        writable: true,
+        configurable: true,
+        enumerable: false
+    });
+    
 }());

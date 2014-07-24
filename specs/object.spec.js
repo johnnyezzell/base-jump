@@ -7,6 +7,8 @@ describe('base-camp Object extensions', function() {
     it('should match the expected interface', function() {
         
         expect(typeof testObject.copy === 'function').toBe(true);
+        expect(typeof testObject.isArray === 'function').toBe(true);
+        expect(typeof testObject.isFunction === 'function').toBe(true);
         
     });
     
@@ -44,6 +46,37 @@ describe('base-camp Object extensions', function() {
             var copiedTestObject = testObject.copy();
             expect(copiedTestObject.testFunction).not.toBeDefined();
         });
+        
+    });
+    
+    describe('isArray()', function() {
+        
+        var testArray = [];
+                
+        it('should return true if the object being tested is an Array', function() {
+            expect(testArray.isArray()).toBe(true);
+        });
+        
+        it('should return false if the object being tested is not an Array', function() {
+            expect(testObject.isArray()).toBe(false);
+        });
+        
+    });
+    
+    describe('isFunction()', function() {
+       
+        var testFunction = function() {
+            return void 0;  
+        };
+        
+        it('should return true if the object is a function', function() {
+            return testFunction.isFunction(); 
+        });
+        
+        if('should return false if the object is not a function', function() {
+            return testObject.isFunction(); 
+        });
+        
     });
     
 });

@@ -1,5 +1,5 @@
-base-jump v0.0
-=========
+base-jump v0.0.0
+================
 
 A leap forward for JavaScript base objects.
 

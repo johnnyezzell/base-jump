@@ -1,6 +1,6 @@
 /*
 base-jump 0.0.0 - A leap forward for your base JavaScript objects
-Built on 2014-07-19
+Built on 2014-07-24
 */
 
 (function() {
@@ -78,6 +78,25 @@ Built on 2014-07-19
     Object.defineProperty(Object.prototype, 'copy', {
         value: function() {
             return copyObject(this);
+        },
+        writable: true,
+        configurable: true,
+        enumerable: false
+    });
+    
+    // Check to see if the current object is an Array
+    Object.defineProperty(Object.prototype, 'isArray', {    
+        value: function() {
+            return Object.prototype.toString.call(this) === "[object Array]";
+        },
+        writable: true,
+        configurable: true,
+        enumerable: false
+    });
+    
+    Object.defineProperty(Object.prototype, 'isFunction', {
+        value: function() {
+            return typeof this === 'function';   
         },
         writable: true,
         configurable: true,
