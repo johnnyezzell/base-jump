@@ -42,9 +42,49 @@
         enumerable: false
     });
     
+    // Check to see if the curren object is a Function
     Object.defineProperty(Object.prototype, 'isFunction', {
         value: function() {
             return typeof this === 'function';   
+        },
+        writable: true,
+        configurable: true,
+        enumerable: false
+    });
+    
+    // Check to see if the current object is a Number
+    Object.defineProperty(Object.prototype, 'isNumber', {
+        value: function() {
+            return !isNaN(parseFloat(this));
+        },
+        writable: true,
+        configurable: true,
+        enumrable: false
+    });
+    
+    // Check to see if the current object is a string
+    Object.defineProperty(Object.prototype, 'isString', {
+        value: function() {
+            return Object.prototype.toString.call(this) === '[object String]';
+        },
+        writable: true,
+        configurable: true,
+        enumerable: false
+    });
+    
+    Object.defineProperty(Object.prototype, 'isBoolean', {
+        value: function() {
+            return Object.prototype.toString.call(this) === '[object Boolean]';
+        },
+        writeable: true,
+        configurable: true,
+        enumerable: false
+    });
+    
+    
+    Object.defineProperty(Object.prototype, 'toNumber', {
+        value: function() {
+            return parseFloat(this.replace(/,/g, '').match(/(\+|-)?((\d+(\.\d+)?)|(\.\d+))/), 10);        
         },
         writable: true,
         configurable: true,
