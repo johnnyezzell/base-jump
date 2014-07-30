@@ -3,23 +3,24 @@ function BinaryTree() {
     var that = this;
     that.rootNode = null;
     
-    that.add = function(key, node) {
+    that.addNode = function(key, node) {
         
-        if( that.rootNode === null) {
+        if (that.rootNode === null) {
             that.rootNode = new BinaryTreeNode(key);
         }
         else {
             var nodeToAdd = new BinaryTreeNode(key);                    
             
-            if(typeof node === 'undefined')
+            if(typeof node === 'undefined' || node === null) {
                 node = that.rootNode;
+            }
             
             if (key < node.key) {
                 if (node.leftNode === null) {
                     node.leftNode = nodeToAdd;
                 }
                 else {
-                    that.add(key, node.leftNode);   
+                    that.addNode(key, node.leftNode);   
                 }
             }
             else if (key > node.key) {
@@ -27,13 +28,53 @@ function BinaryTree() {
                     node.rightNode = nodeToAdd;
                 }
                 else {
-                    that.add(key, node.rightNode);   
+                    that.addNode(key, node.rightNode);   
                 }
             }
             else {
                 throw new Error("key must be unique");   
             }
         }
+        
+    };
+    
+    that.getNode = function (key, node) {
+        
+        if (that.rootNode === null) {
+            return void 0;   
+        }
+        
+        if (typeof node === 'undefined' || node === null) {
+            node = that.rootNode;
+        }
+        
+        if (node.key === key) {
+            return node;   
+        }
+        
+        if (key < node.key) {
+            if (node.leftNode === null) {
+                return void 0;
+            }
+            if (node.leftNode.key === key) {
+                return node.leftNode;
+            }
+            else {
+                return that.getNode(key, node.leftNode);
+            }
+        } 
+        else if (key > node.key) {
+            if (node.rightNode === null) {
+                return void 0;
+            }
+            else if (node.rightNode.key === key) {
+                return node.rightNode;
+            }
+            else {
+                return that.getNode(key, node.rightNode);
+            }
+        }
+        
     };
     
 }

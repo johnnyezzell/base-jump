@@ -32,7 +32,7 @@ describe('base-camp BinaryTree object and extensions', function() {
         
         it('should match the expected interface', function() {
             expect(binaryTree.rootNode).toBeDefined();
-            expect(binaryTree.add).toBeDefined();
+            expect(binaryTree.addNode).toBeDefined();
         });
              
     });
@@ -47,7 +47,7 @@ describe('base-camp BinaryTree object and extensions', function() {
             expect(binaryTreeNode.key).toBeDefined();
         });
 
-        describe('add()', function() {
+        describe('addNode()', function() {
             
             var binaryTree;
             
@@ -55,9 +55,9 @@ describe('base-camp BinaryTree object and extensions', function() {
                 binaryTree = new BinaryTree();
             });
             
-            it('should set the root node the first time add is called', function() {
+            it('should set the root node the first time addNode is called', function() {
                 
-                binaryTree.add(10);
+                binaryTree.addNode(10);
                 
                 expect(binaryTree.rootNode).not.toBeNull();
                 expect(binaryTree.rootNode.key).toEqual(10);
@@ -66,8 +66,8 @@ describe('base-camp BinaryTree object and extensions', function() {
             
             it('should set the left node of the root node if the second value is less than the root value', function() {
                
-                binaryTree.add(10);
-                binaryTree.add(7);
+                binaryTree.addNode(10);
+                binaryTree.addNode(7);
                 
                 expect(binaryTree.rootNode.leftNode).not.toBeNull();
                 expect(binaryTree.rootNode.rightNode).toBeNull();
@@ -76,8 +76,8 @@ describe('base-camp BinaryTree object and extensions', function() {
             
             it('should set the right node of the root node if the second value is greater than the root value', function() {
                
-                binaryTree.add(10);
-                binaryTree.add(17);
+                binaryTree.addNode(10);
+                binaryTree.addNode(17);
                 
                 expect(binaryTree.rootNode.leftNode).toBeNull();
                 expect(binaryTree.rootNode.rightNode).not.toBeNull();
@@ -86,23 +86,23 @@ describe('base-camp BinaryTree object and extensions', function() {
             
             it('should not change if the value being added has already been added', function() {
                 
-                binaryTree.add(10);
+                binaryTree.addNode(10);
                 
-                expect(function() { binaryTree.add(10); }).toThrow(new Error('key must be unique'));
+                expect(function() { binaryTree.addNode(10); }).toThrow(new Error('key must be unique'));
             
             });
             
             it('should be able to add several levels and branch appropriately using the built in operators', function() {
                 
-                binaryTree.add(10);     // <-- root node
+                binaryTree.addNode(10);     // <-- root node
                 
-                binaryTree.add(5);      //   <-- left node
-                binaryTree.add(4);      //     <-- left node
-                binaryTree.add(9);      //     <-- right node
+                binaryTree.addNode(5);      //   <-- left node
+                binaryTree.addNode(4);      //     <-- left node
+                binaryTree.addNode(9);      //     <-- right node
                 
-                binaryTree.add(15);     //   <-- right node
-                binaryTree.add(14);     //     <-- left node
-                binaryTree.add(16);     //     <-- right node
+                binaryTree.addNode(15);     //   <-- right node
+                binaryTree.addNode(14);     //     <-- left node
+                binaryTree.addNode(16);     //     <-- right node
             
                 expect(binaryTree.rootNode.key).toEqual(10);
                 expect(binaryTree.rootNode.leftNode.key).toEqual(5);
@@ -114,6 +114,55 @@ describe('base-camp BinaryTree object and extensions', function() {
                 
             });
                     
+        });
+        
+        describe('getNode()', function() {
+            
+            var binaryTree = null;
+            
+            beforeEach(function() {
+                
+                binaryTree = new BinaryTree();
+                binaryTree.addNode(10);     // --- root node
+                binaryTree.addNode(5);      //   |-- left node
+                binaryTree.addNode(4);      //   |---- left node
+                binaryTree.addNode(8);      //   |---- right node
+                binaryTree.addNode(15);     //   |-- right node
+                binaryTree.addNode(13);     //   |---- left node
+                binaryTree.addNode(17);     //   |---- right node
+                
+            });
+            
+            it('should find nodes with existing keys', function() {
+                expect(binaryTree.getNode(10).key).toEqual(10);
+                expect(binaryTree.getNode(5).key).toEqual(5);
+                expect(binaryTree.getNode(4).key).toEqual(4);
+                expect(binaryTree.getNode(8).key).toEqual(8);
+                expect(binaryTree.getNode(15).key).toEqual(15);
+                expect(binaryTree.getNode(13).key).toEqual(13);
+                expect(binaryTree.getNode(17).key).toEqual(17);                
+            });
+            
+            it('should return undefined when a key doesn\'t exist at any level', function() {
+                expect(binaryTree.getNode(9)).toBeUndefined(); 
+                expect(binaryTree.getNode(7)).toBeUndefined(); 
+                expect(binaryTree.getNode(3)).toBeUndefined(); 
+                expect(binaryTree.getNode(12)).toBeUndefined(); 
+                expect(binaryTree.getNode(14)).toBeUndefined(); 
+                expect(binaryTree.getNode(19)).toBeUndefined(); 
+                expect(binaryTree.getNode(12)).toBeUndefined();
+            
+                binaryTree = new BinaryTree();
+                expect(binaryTree.getNode(11)).toBeUndefined();
+                
+                binaryTree = new BinaryTree();
+                binaryTree.addNode(10);
+                binaryTree.addNode(11);
+                binaryTree.addNode(12);
+                expect(binaryTree.getNode(13)).toBeUndefined();
+                
+            });
+            
         });
         
     });
