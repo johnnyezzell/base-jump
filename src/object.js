@@ -32,6 +32,9 @@
         enumerable: false
     });
     
+    ///////////////////////
+    // Type Check Functions
+    
     // Check to see if the current object is an Array
     Object.defineProperty(Object.prototype, 'isArray', {    
         value: function() {
@@ -81,6 +84,8 @@
         enumerable: false
     });
     
+    ///////////////////////
+    // Type Conversion Functions
     
     Object.defineProperty(Object.prototype, 'toNumber', {
         value: function() {

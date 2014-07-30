@@ -1,58 +1,46 @@
 function BinaryTree() {
-    var self = this;
-    self.rootNode = null;
+
+    var that = this;
+    that.rootNode = null;
     
-    self.add = function(value) {
+    that.add = function(key, node) {
         
-        var node = new BinaryTreeNode();
-        node.value = value;
-        
-        var current;
-        
-        // set root node if it's not
-        if(self.rootNode === null) {
-            self.rootNode = node;
+        if( that.rootNode === null) {
+            that.rootNode = new BinaryTreeNode(key);
         }
         else {
-            current = self.rootNode;
+            var nodeToAdd = new BinaryTreeNode(key);                    
             
-            while(true) {
-                    
-                if (value < current.value) {
-                
-                    if (current.leftNode === null) {
-                        current.leftNode = node;
-                        break;
-                    }
-                    else {
-                        current = current.leftNode;   
-                    }
-                
-                }
-                else if (value > current.value) {
-                
-                    if (current.rightNode === null) {
-                        current.rightNode = node;
-                        break;
-                    }
-                    else {
-                        current = current.rightNode;   
-                    }
-                    
+            if(typeof node === 'undefined')
+                node = that.rootNode;
+            
+            if (key < node.key) {
+                if (node.leftNode === null) {
+                    node.leftNode = nodeToAdd;
                 }
                 else {
-                    break;   
+                    that.add(key, node.leftNode);   
                 }
-                    
+            }
+            else if (key > node.key) {
+                if (node.rightNode === null) {
+                    node.rightNode = nodeToAdd;
+                }
+                else {
+                    that.add(key, node.rightNode);   
+                }
+            }
+            else {
+                throw new Error("key must be unique");   
             }
         }
-        
     };
+    
 }
 
-function BinaryTreeNode() {
-    var self = this;
-    self.value = null;
-    self.leftNode = null;
-    self.rightNode = null;
+function BinaryTreeNode(key) {
+    var that = this;
+    that.key = key;
+    that.leftNode = null;
+    that.rightNode = null;
 }
