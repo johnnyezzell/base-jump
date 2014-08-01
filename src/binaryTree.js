@@ -1,86 +1,128 @@
-function BinaryTree() {
+var BinaryTree = (function () {
 
     var that = this;
-    that.rootNode = null;
     
-    that.addNode = function(key, node) {
+    that.array = [];
+    
+    that.addNodesInOrder = function(node) {
         
-        if (that.rootNode === null) {
-            that.rootNode = new BinaryTreeNode(key);
+        if (node.leftNode !== null) {
+            that.addNodesInOrder(node.leftNode);
+        }    
+
+        that.array.push(node.key);
+        
+        if (node.rightNode !== null) {
+            that.addNodesInOrder(node.rightNode);   
         }
-        else {
-            var nodeToAdd = new BinaryTreeNode(key);                    
-            
-            if(typeof node === 'undefined' || node === null) {
-                node = that.rootNode;
+                
+    };
+    
+    return function () {
+    
+        var _that = this;
+        
+        _that.rootNode = null;
+    
+        _that.addNode = function(key, node) {
+
+            if (_that.rootNode === null) {
+                _that.rootNode = new BinaryTreeNode(key);
             }
-            
+            else {
+                var nodeToAdd = new BinaryTreeNode(key);                    
+
+                if(typeof node === 'undefined' || node === null) {
+                    node = _that.rootNode;
+                }
+
+                if (key < node.key) {
+                    if (node.leftNode === null) {
+                        node.leftNode = nodeToAdd;
+                    }
+                    else {
+                        _that.addNode(key, node.leftNode);   
+                    }
+                }
+                else if (key > node.key) {
+                    if (node.rightNode === null) {
+                        node.rightNode = nodeToAdd;
+                    }
+                    else {
+                        _that.addNode(key, node.rightNode);   
+                    }
+                }
+                else {
+                    throw new Error("key must be unique");   
+                }
+            }
+
+        };
+
+        _that.getNode = function (key, node) {
+
+            if (_that.rootNode === null) {
+                return void 0;   
+            }
+
+            if (typeof node === 'undefined' || node === null) {
+                node = _that.rootNode;
+            }
+
             if (key < node.key) {
                 if (node.leftNode === null) {
-                    node.leftNode = nodeToAdd;
+                    return void 0;
+                }
+                else if (node.leftNode.key === key) {
+                    return node.leftNode;
                 }
                 else {
-                    that.addNode(key, node.leftNode);   
+                    return _that.getNode(key, node.leftNode);
                 }
-            }
+            } 
             else if (key > node.key) {
                 if (node.rightNode === null) {
-                    node.rightNode = nodeToAdd;
+                    return void 0;
+                }
+                else if (node.rightNode.key === key) {
+                    return node.rightNode;
                 }
                 else {
-                    that.addNode(key, node.rightNode);   
+                    return _that.getNode(key, node.rightNode);
                 }
             }
             else {
-                throw new Error("key must be unique");   
+                return node;   
             }
-        }
-        
-    };
-    
-    that.getNode = function (key, node) {
-        
-        if (that.rootNode === null) {
-            return void 0;   
-        }
-        
-        if (typeof node === 'undefined' || node === null) {
-            node = that.rootNode;
-        }
-            
-        if (key < node.key) {
-            if (node.leftNode === null) {
-                return void 0;
-            }
-            else if (node.leftNode.key === key) {
-                return node.leftNode;
-            }
-            else {
-                return that.getNode(key, node.leftNode);
-            }
-        } 
-        else if (key > node.key) {
-            if (node.rightNode === null) {
-                return void 0;
-            }
-            else if (node.rightNode.key === key) {
-                return node.rightNode;
-            }
-            else {
-                return that.getNode(key, node.rightNode);
-            }
-        }
-        else {
-            return node;   
-        }
-        
-    };
-    
-}
 
-function BinaryTreeNode(key) {
+        };
+
+        _that.toArray = function () {
+
+            that.array = [];
+            
+            var node = _that.rootNode;
+            
+            if (node === null) {
+                return that.array;
+            }
+            
+            that.addNodesInOrder(node);
+            
+            return that.array;
+        };
+    
+    };
+    
+}());
+
+function BinaryTreeNode(key, value) {
+    
     var that = this;
+    
     that.key = key;
+    that.value = value || null;
     that.leftNode = null;
     that.rightNode = null;
+
 }

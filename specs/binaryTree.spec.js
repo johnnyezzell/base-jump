@@ -33,6 +33,8 @@ describe('base-camp BinaryTree object and extensions', function() {
         it('should match the expected interface', function() {
             expect(binaryTree.rootNode).toBeDefined();
             expect(binaryTree.addNode).toBeDefined();
+            expect(binaryTree.getNode).toBeDefined();
+            expect(binaryTree.toArray).toBeDefined();
         });
              
     });
@@ -160,6 +162,41 @@ describe('base-camp BinaryTree object and extensions', function() {
                 expect(binaryTree.getNode(19)).toBeUndefined(); 
                 expect(binaryTree.getNode(12)).toBeUndefined();
             });            
+            
+        });
+        
+        describe('toArray()', function() {
+            
+            var binaryTree = null;
+
+            it('should return an empty array if the root node is null' , function() {
+                
+                binaryTree = new BinaryTree();
+                expect(binaryTree.toArray().length).toEqual(0);
+                
+            });
+            
+            it('should return an ordered array', function() {
+                
+                binaryTree = new BinaryTree();
+                binaryTree.addNode(10);     // --- root node
+                binaryTree.addNode(5);      //   |-- left node
+                binaryTree.addNode(4);      //   |---- left node
+                binaryTree.addNode(8);      //   |---- right node
+                binaryTree.addNode(15);     //   |-- right node
+                binaryTree.addNode(13);     //   |---- left node
+                binaryTree.addNode(17);     //   |---- right node
+                
+                var array = binaryTree.toArray();
+                expect(array[0]).toEqual(4);
+                expect(array[1]).toEqual(5);
+                expect(array[2]).toEqual(8);
+                expect(array[3]).toEqual(10);
+                expect(array[4]).toEqual(13);
+                expect(array[5]).toEqual(15);
+                expect(array[6]).toEqual(17);
+                
+            });
             
         });
         
