@@ -133,6 +133,11 @@ describe('base-camp BinaryTree object and extensions', function() {
                 
             });
             
+            it('should return undefined if the root is null', function() {
+                binaryTree = new BinaryTree();
+                expect(binaryTree.getNode(10)).toBeUndefined();
+            });
+            
             it('should find nodes with existing keys', function() {
                 expect(binaryTree.getNode(10).key).toEqual(10);
                 expect(binaryTree.getNode(5).key).toEqual(5);
@@ -143,25 +148,18 @@ describe('base-camp BinaryTree object and extensions', function() {
                 expect(binaryTree.getNode(17).key).toEqual(17);                
             });
             
-            it('should return undefined when a key doesn\'t exist at any level', function() {
+            it('should return undefined when a key doesn\'t exist in left', function() {
                 expect(binaryTree.getNode(9)).toBeUndefined(); 
                 expect(binaryTree.getNode(7)).toBeUndefined(); 
                 expect(binaryTree.getNode(3)).toBeUndefined(); 
+            });
+            
+            it('should return undefined when a key doesn\'t exist in right', function() {
                 expect(binaryTree.getNode(12)).toBeUndefined(); 
                 expect(binaryTree.getNode(14)).toBeUndefined(); 
                 expect(binaryTree.getNode(19)).toBeUndefined(); 
                 expect(binaryTree.getNode(12)).toBeUndefined();
-            
-                binaryTree = new BinaryTree();
-                expect(binaryTree.getNode(11)).toBeUndefined();
-                
-                binaryTree = new BinaryTree();
-                binaryTree.addNode(10);
-                binaryTree.addNode(11);
-                binaryTree.addNode(12);
-                expect(binaryTree.getNode(13)).toBeUndefined();
-                
-            });
+            });            
             
         });
         

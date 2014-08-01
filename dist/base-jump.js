@@ -1,6 +1,6 @@
 /*
 base-jump 0.0.0 - A leap forward for your base JavaScript objects
-Built on 2014-07-30
+Built on 2014-07-31
 */
 
 (function() {
@@ -99,16 +99,12 @@ function BinaryTree() {
         if (typeof node === 'undefined' || node === null) {
             node = that.rootNode;
         }
-        
-        if (node.key === key) {
-            return node;   
-        }
-        
+            
         if (key < node.key) {
             if (node.leftNode === null) {
                 return void 0;
             }
-            if (node.leftNode.key === key) {
+            else if (node.leftNode.key === key) {
                 return node.leftNode;
             }
             else {
@@ -125,6 +121,9 @@ function BinaryTree() {
             else {
                 return that.getNode(key, node.rightNode);
             }
+        }
+        else {
+            return node;   
         }
         
     };
