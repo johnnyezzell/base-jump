@@ -3,6 +3,15 @@ base-jump 0.0.0 - A leap forward for your base JavaScript objects
 Built on 2014-08-03
 */
 
+// Global BJ object
+var BJ = BJ || {};
+
+Object.defineProperty(BJ, 'version', {
+    value: '0.0.1',
+    writable: false,
+    enumerable: false
+});
+
 (function() {
 
     // Insert an item in an array before the index passed
@@ -50,7 +59,18 @@ Built on 2014-08-03
 
 }());
 
-var BinaryTree = (function () {
+BJ.BinaryTreeNode = function(key, value) {
+    
+    var that = this;
+    
+    that.key = key;
+    that.value = value || null;
+    that.leftNode = null;
+    that.rightNode = null;
+
+};
+
+BJ.BinaryTree = (function () {
 
     var that = this;
     
@@ -79,10 +99,10 @@ var BinaryTree = (function () {
         _that.addNode = function(key, value, node) {
 
             if (_that.rootNode === null) {
-                _that.rootNode = new BinaryTreeNode(key, value);
+                _that.rootNode = new BJ.BinaryTreeNode(key, value);
             }
             else {
-                var nodeToAdd = new BinaryTreeNode(key, value);                    
+                var nodeToAdd = new BJ.BinaryTreeNode(key, value);                    
 
                 if(typeof node === 'undefined' || node === null) {
                     node = _that.rootNode;
@@ -167,17 +187,6 @@ var BinaryTree = (function () {
     };
     
 }());
-
-function BinaryTreeNode(key, value) {
-    
-    var that = this;
-    
-    that.key = key;
-    that.value = value || null;
-    that.leftNode = null;
-    that.rightNode = null;
-
-}
 
 // Some people will suggest that the following
 // methods should never be created.  However, if
@@ -278,12 +287,3 @@ function BinaryTreeNode(key, value) {
     });
     
 }());
-
-// Global BJ object
-var BJ = BJ || {};
-
-Object.defineProperty(BJ, 'version', {
-    value: '0.0.1',
-    writable: false,
-    enumerable: false
-});

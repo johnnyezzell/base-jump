@@ -1,4 +1,15 @@
-var BinaryTree = (function () {
+BJ.BinaryTreeNode = function(key, value) {
+    
+    var that = this;
+    
+    that.key = key;
+    that.value = value || null;
+    that.leftNode = null;
+    that.rightNode = null;
+
+};
+
+BJ.BinaryTree = (function () {
 
     var that = this;
     
@@ -27,10 +38,10 @@ var BinaryTree = (function () {
         _that.addNode = function(key, value, node) {
 
             if (_that.rootNode === null) {
-                _that.rootNode = new BinaryTreeNode(key, value);
+                _that.rootNode = new BJ.BinaryTreeNode(key, value);
             }
             else {
-                var nodeToAdd = new BinaryTreeNode(key, value);                    
+                var nodeToAdd = new BJ.BinaryTreeNode(key, value);                    
 
                 if(typeof node === 'undefined' || node === null) {
                     node = _that.rootNode;
@@ -115,14 +126,3 @@ var BinaryTree = (function () {
     };
     
 }());
-
-function BinaryTreeNode(key, value) {
-    
-    var that = this;
-    
-    that.key = key;
-    that.value = value || null;
-    that.leftNode = null;
-    that.rightNode = null;
-
-}

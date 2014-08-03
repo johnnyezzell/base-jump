@@ -20,15 +20,15 @@ describe('base-camp BinaryTree object and extensions', function() {
             }
         }
     };
-    
+        
     it('should define the BinaryTree object and BinaryTreeNode contructors', function() {
-        expect(BinaryTree).toBeDefined(); 
-        expect(BinaryTreeNode).toBeDefined();
+        expect(BJ.BinaryTree).toBeDefined(); 
+        expect(BJ.BinaryTreeNode).toBeDefined();
     });
     
-    describe('BinaryTree', function() {
+    describe('BJ.BinaryTree', function() {
 
-        var binaryTree = new BinaryTree();
+        var binaryTree = new BJ.BinaryTree();
         
         it('should match the expected interface', function() {
             expect(binaryTree.rootNode).toBeDefined();
@@ -39,9 +39,9 @@ describe('base-camp BinaryTree object and extensions', function() {
              
     });
     
-    describe('BinaryTreeNode', function() {
+    describe('BJ.BinaryTreeNode', function() {
         
-        var binaryTreeNode = new BinaryTreeNode(10, 'test10');
+        var binaryTreeNode = new BJ.BinaryTreeNode(10, 'test10');
         
         it('should match the expected interface', function() {
             expect(binaryTreeNode.leftNode).toBeDefined();
@@ -55,7 +55,7 @@ describe('base-camp BinaryTree object and extensions', function() {
             var binaryTree;
             
             beforeEach(function() {            
-                binaryTree = new BinaryTree();
+                binaryTree = new BJ.BinaryTree();
             });
             
             it('should set the root node the first time addNode is called', function() {
@@ -134,7 +134,7 @@ describe('base-camp BinaryTree object and extensions', function() {
             
             beforeEach(function() {
                 
-                binaryTree = new BinaryTree();
+                binaryTree = new BJ.BinaryTree();
                 binaryTree.addNode(10, 'test10');       // --- root node
                 binaryTree.addNode(5, 'test5');         //   |-- left node
                 binaryTree.addNode(4, 'test4');         //   |---- left node
@@ -146,7 +146,7 @@ describe('base-camp BinaryTree object and extensions', function() {
             });
             
             it('should return undefined if the root is null', function() {
-                binaryTree = new BinaryTree();
+                binaryTree = new BJ.BinaryTree();
                 expect(binaryTree.getNode(10)).toBeUndefined();
             });
             
@@ -181,14 +181,14 @@ describe('base-camp BinaryTree object and extensions', function() {
 
             it('should return an empty array if the root node is null' , function() {
                 
-                binaryTree = new BinaryTree();
+                binaryTree = new BJ.BinaryTree();
                 expect(binaryTree.toArray().length).toEqual(0);
                 
             });
             
             it('should return an ordered array', function() {
                 
-                binaryTree = new BinaryTree();
+                binaryTree = new BJ.BinaryTree();
                 binaryTree.addNode(10, 'test10');       // --- root node
                 binaryTree.addNode(5, 'test5');         //   |-- left node
                 binaryTree.addNode(4, 'test4');         //   |---- left node
