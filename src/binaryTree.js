@@ -10,12 +10,12 @@ var BinaryTree = (function () {
             that.addNodesInOrder(node.leftNode);
         }    
 
-        that.array.push(node.key);
+        that.array.push(node.value);
         
         if (node.rightNode !== null) {
             that.addNodesInOrder(node.rightNode);   
         }
-                
+        
     };
     
     return function () {
@@ -24,13 +24,13 @@ var BinaryTree = (function () {
         
         _that.rootNode = null;
     
-        _that.addNode = function(key, node) {
+        _that.addNode = function(key, value, node) {
 
             if (_that.rootNode === null) {
-                _that.rootNode = new BinaryTreeNode(key);
+                _that.rootNode = new BinaryTreeNode(key, value);
             }
             else {
-                var nodeToAdd = new BinaryTreeNode(key);                    
+                var nodeToAdd = new BinaryTreeNode(key, value);                    
 
                 if(typeof node === 'undefined' || node === null) {
                     node = _that.rootNode;
@@ -41,7 +41,7 @@ var BinaryTree = (function () {
                         node.leftNode = nodeToAdd;
                     }
                     else {
-                        _that.addNode(key, node.leftNode);   
+                        _that.addNode(key, value, node.leftNode);   
                     }
                 }
                 else if (key > node.key) {
@@ -49,7 +49,7 @@ var BinaryTree = (function () {
                         node.rightNode = nodeToAdd;
                     }
                     else {
-                        _that.addNode(key, node.rightNode);   
+                        _that.addNode(key, value, node.rightNode);   
                     }
                 }
                 else {
