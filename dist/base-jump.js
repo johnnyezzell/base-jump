@@ -1,5 +1,4 @@
-// Base Jump 0.0.1
-// ==========================
+// #Base Jump 0.0.1
 // **A leap forward for your JavaScript objects.**
 
 // The base jump name space
@@ -12,8 +11,7 @@ Object.defineProperty(BJ, 'version', {
     enumerable: false
 });
 
-// Array Extensions
-// ==========================
+// ##Array Extensions
 
 // Insert an item in an array before the index passed.
 // Can throw "Index out of range" error.
@@ -58,8 +56,7 @@ Array.prototype.copy = function() {
     return newArray;
 };
 
-// BinaryTree
-// ==========
+// ##BinaryTree
 
 // The BinaryTreeNode constructor.
 BJ.BinaryTreeNode = function(key, value) {
@@ -201,9 +198,7 @@ BJ.BinaryTree = (function () {
     
 }());
 
-
-// Object Extensions
-// ===========================
+// ##Object Extensions
 
 // Some people will suggest that the following
 // methods should never be created.  However, if
@@ -238,8 +233,7 @@ Object.defineProperty(Object.prototype, 'copy', {
     enumerable: false
 });
 
-// Type Check Functions
-// --------------------
+// ###Type Check Functions
 
 // Check to see if the current object is an array.
 Object.defineProperty(Object.prototype, 'isArray', {    
@@ -292,8 +286,7 @@ Object.defineProperty(Object.prototype, 'isBoolean', {
 });
 
 
-// Type Conversion Functions
-// -------------------------
+// ###Type Conversion Functions
 
 // Converts an object that can represent a number into a number.
 //

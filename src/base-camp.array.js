@@ -1,5 +1,4 @@
-// Array Extensions
-// ==========================
+// ##Array Extensions
 
 // Insert an item in an array before the index passed.
 // Can throw "Index out of range" error.

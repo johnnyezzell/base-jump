@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
     
-    var banner = '// Base Jump <%= pkg.version %>\n';
-    banner += '// ==========================\n';
+    var banner = '// #Base Jump <%= pkg.version %>\n';
     banner += '// **A leap forward for your JavaScript objects.**\n\n';
     
     grunt.initConfig({

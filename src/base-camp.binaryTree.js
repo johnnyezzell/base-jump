@@ -1,5 +1,4 @@
-// BinaryTree
-// ==========
+// ##BinaryTree
 
 // The BinaryTreeNode constructor.
 BJ.BinaryTreeNode = function(key, value) {

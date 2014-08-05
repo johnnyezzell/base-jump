@@ -1,6 +1,4 @@
-
-// Object Extensions
-// ===========================
+// ##Object Extensions
 
 // Some people will suggest that the following
 // methods should never be created.  However, if
@@ -35,8 +33,7 @@ Object.defineProperty(Object.prototype, 'copy', {
     enumerable: false
 });
 
-// Type Check Functions
-// --------------------
+// ###Type Check Functions
 
 // Check to see if the current object is an array.
 Object.defineProperty(Object.prototype, 'isArray', {    
@@ -89,8 +86,7 @@ Object.defineProperty(Object.prototype, 'isBoolean', {
 });
 
 
-// Type Conversion Functions
-// -------------------------
+// ###Type Conversion Functions
 
 // Converts an object that can represent a number into a number.
 //
