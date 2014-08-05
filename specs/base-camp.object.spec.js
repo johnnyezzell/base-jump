@@ -168,6 +168,38 @@ describe('base-camp Object extensions', function() {
                         
         });
         
+        describe('toBoolean()', function() {
+            
+            var testString = null;
+            var testNumber = null;
+            
+            it('should return true if it\'s a string containing true', function() {
+                testString = "True";
+                expect(testString.toBoolean()).toBe(true);
+            });
+            
+            it('should return true if an untrimmed string containing true', function() {
+                testString = "true   ";
+                expect(testString.toBoolean()).toBe(true); 
+            });            
+            
+            it('should return false if the test is not true', function() {
+                testString = "AFDA";
+                expect(testString.toBoolean()).toBe(false);
+            });
+            
+            it('should return true if a number is not equal to 0', function() {
+                testNumber = 123;
+                expect(testNumber.toBoolean()).toBe(true);
+            });            
+            
+            it('should return false if a number is 0', function() {
+                testNumber = 0;
+                expect(testNumber.toBoolean()).toBe(false);
+            });
+            
+        });
+        
     });
     
 });

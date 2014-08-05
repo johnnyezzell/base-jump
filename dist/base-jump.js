@@ -1,64 +1,67 @@
-/*
-base-jump 0.0.0 - A leap forward for your base JavaScript objects
-Built on 2014-08-03
-*/
+// Base Jump 0.0.1
+// ==========================
+// **A leap forward for your JavaScript objects.**
 
-// Global BJ object
+// The base jump name space
 var BJ = BJ || {};
 
+// Returns the current version of base jump.
 Object.defineProperty(BJ, 'version', {
     value: '0.0.1',
     writable: false,
     enumerable: false
 });
 
-(function() {
+// Array Extensions
+// ==========================
 
-    // Insert an item in an array before the index passed
-    // Throws "Index out of range" error
-    Array.prototype.insertBefore = function(index, item) {
-        if (index > this.length - 1 || index < 0) {
-            throw new Error("Index out of range");
-        }
-        this.splice(index, 0, item);
-    };
+// Insert an item in an array before the index passed.
+// Can throw "Index out of range" error.
+Array.prototype.insertBefore = function(index, item) {
+    if (index > this.length - 1 || index < 0) {
+        throw new Error("Index out of range");
+    }
+    this.splice(index, 0, item);
+};
 
-    // Insert an item into an array after the index passed
-    // Throws "Index out of range" error
-    Array.prototype.insertAfter = function(index, item) {
-        if (index > this.length - 1 || index < 0) {
-            throw new Error("Index out of range");
-        }
-        this.splice(index + 1, 0, item);
-    };
+// Insert an item into an array after the index passed.
+// Can throw "Index out of range" error.
+Array.prototype.insertAfter = function(index, item) {
+    if (index > this.length - 1 || index < 0) {
+        throw new Error("Index out of range");
+    }
+    this.splice(index + 1, 0, item);
+};
 
-    // Removes the item from the array at the specified index
-    // Throws "Index out of range" error
-    Array.prototype.removeAt = function(index) {
-        if (index > this.length - 1 || index < 0) {
-            throw new Error("Index out of range");
-        }
-        this.splice(index, 1);
-    };
+// Removes the item from the array at the specified index.
+// Can throw "Index out of range" error.
+Array.prototype.removeAt = function(index) {
+    if (index > this.length - 1 || index < 0) {
+        throw new Error("Index out of range");
+    }
+    this.splice(index, 1);
+};
 
-    // Removes all elements of an array
-    Array.prototype.removeAll = function() {
-        while(this.length > 0) {
-            this.pop();
-        }
-    };
+// Removes all elements of an array.
+Array.prototype.removeAll = function() {
+    while(this.length > 0) {
+        this.pop();
+    }
+};
 
-    // Returns a copy of an Array.
-    Array.prototype.copy = function() {
-        var newArray = [];
-        for(var index = 0; index < this.length; index++) {
-            newArray.push(this[index]);
-        }
-        return newArray;
-    };
+// Returns a copy of an array.
+Array.prototype.copy = function() {
+    var newArray = [];
+    for(var index = 0; index < this.length; index++) {
+        newArray.push(this[index]);
+    }
+    return newArray;
+};
 
-}());
+// BinaryTree
+// ==========
 
+// The BinaryTreeNode constructor.
 BJ.BinaryTreeNode = function(key, value) {
     
     var that = this;
@@ -70,12 +73,15 @@ BJ.BinaryTreeNode = function(key, value) {
 
 };
 
+
+// A closure that will return the BinaryTree constructor.
 BJ.BinaryTree = (function () {
 
     var that = this;
     
     that.array = [];
     
+    // Private method used to when creating an array.
     that.addNodesInOrder = function(node) {
         
         if (node.leftNode !== null) {
@@ -90,14 +96,18 @@ BJ.BinaryTree = (function () {
         
     };
     
+    // Returns the BinaryTree constructor.
     return function () {
     
         var _that = this;
         
         _that.rootNode = null;
     
+        // Adds a new to the BinaryTree using recursion.
+        // The node argument should not be used by external callers.
         _that.addNode = function(key, value, node) {
 
+            // If the root node is null create one with our value.
             if (_that.rootNode === null) {
                 _that.rootNode = new BJ.BinaryTreeNode(key, value);
             }
@@ -131,6 +141,8 @@ BJ.BinaryTree = (function () {
 
         };
 
+        // Gets a node by the key using recursion.
+        // The node argument should not be used by external callers.
         _that.getNode = function (key, node) {
 
             if (_that.rootNode === null) {
@@ -169,6 +181,7 @@ BJ.BinaryTree = (function () {
 
         };
 
+        // Creates an array from our binary tree node values sorted by the node keys.
         _that.toArray = function () {
 
             that.array = [];
@@ -188,102 +201,121 @@ BJ.BinaryTree = (function () {
     
 }());
 
+
+// Object Extensions
+// ===========================
+
 // Some people will suggest that the following
 // methods should never be created.  However, if
-// someone wants to create their over method on
+// someone wants to create their own method on
 // the object with the same name, they can overwrite
 // this base-jump method easily. 
 //
 // Sample of overwritting object proptotype method.
+//
 // var myObject.copy = function() {...};
-(function() {
-
-    function copyObject(sourceObject) {
-        var targetObject = {};
-        for(var propertyName in sourceObject) {
-            // We ignore functions because this causes problems when
-            // dealing with two way databinding.  In the future, we may
-            // change this and create a new copySafe that does not copy
-            // the functions.
-            if(typeof sourceObject[propertyName] !== 'function')
-                targetObject[propertyName] = sourceObject[propertyName];
-        }
-        return targetObject;
+function copyObject(sourceObject) {
+    var targetObject = {};
+    for(var propertyName in sourceObject) {
+        // We ignore functions because this causes problems when
+        // dealing with two way databinding.  In the future, we may
+        // change this and create a new copySafe that does not copy
+        // the functions.
+        if(typeof sourceObject[propertyName] !== 'function')
+            targetObject[propertyName] = sourceObject[propertyName];
     }
-    
-    // Create a copy of the current object.
-    // Arrays will be copied as a value.
-    Object.defineProperty(Object.prototype, 'copy', {
-        value: function() {
-            return copyObject(this);
-        },
-        writable: true,
-        configurable: true,
-        enumerable: false
-    });
-    
-    ///////////////////////
-    // Type Check Functions
-    
-    // Check to see if the current object is an Array
-    Object.defineProperty(Object.prototype, 'isArray', {    
-        value: function() {
-            return Object.prototype.toString.call(this) === "[object Array]";
-        },
-        writable: true,
-        configurable: true,
-        enumerable: false
-    });
-    
-    // Check to see if the curren object is a Function
-    Object.defineProperty(Object.prototype, 'isFunction', {
-        value: function() {
-            return typeof this === 'function';   
-        },
-        writable: true,
-        configurable: true,
-        enumerable: false
-    });
-    
-    // Check to see if the current object is a Number
-    Object.defineProperty(Object.prototype, 'isNumber', {
-        value: function() {
-            return !isNaN(parseFloat(this));
-        },
-        writable: true,
-        configurable: true,
-        enumrable: false
-    });
-    
-    // Check to see if the current object is a string
-    Object.defineProperty(Object.prototype, 'isString', {
-        value: function() {
-            return Object.prototype.toString.call(this) === '[object String]';
-        },
-        writable: true,
-        configurable: true,
-        enumerable: false
-    });
-    
-    Object.defineProperty(Object.prototype, 'isBoolean', {
-        value: function() {
-            return Object.prototype.toString.call(this) === '[object Boolean]';
-        },
-        writeable: true,
-        configurable: true,
-        enumerable: false
-    });
-    
-    ///////////////////////
-    // Type Conversion Functions
-    
-    Object.defineProperty(Object.prototype, 'toNumber', {
-        value: function() {
-            return parseFloat(this.replace(/,/g, '').match(/(\+|-)?((\d+(\.\d+)?)|(\.\d+))/), 10);        
-        },
-        writable: true,
-        configurable: true,
-        enumerable: false
-    });
-    
-}());
+    return targetObject;
+}
+
+// Create a copy of the current object.
+// Arrays will be copied as a value.
+Object.defineProperty(Object.prototype, 'copy', {
+    value: function() {
+        return copyObject(this);
+    },
+    writable: true,
+    configurable: true,
+    enumerable: false
+});
+
+// Type Check Functions
+// --------------------
+
+// Check to see if the current object is an array.
+Object.defineProperty(Object.prototype, 'isArray', {    
+    value: function() {
+        return Object.prototype.toString.call(this) === "[object Array]";
+    },
+    writable: true,
+    configurable: true,
+    enumerable: false
+});
+
+// Check to see if the curren object is a function.
+Object.defineProperty(Object.prototype, 'isFunction', {
+    value: function() {
+        return typeof this === 'function';   
+    },
+    writable: true,
+    configurable: true,
+    enumerable: false
+});
+
+// Check to see if the current object is a number.
+Object.defineProperty(Object.prototype, 'isNumber', {
+    value: function() {
+        return !isNaN(parseFloat(this));
+    },
+    writable: true,
+    configurable: true,
+    enumrable: false
+});
+
+// Check to see if the current object is a string.
+Object.defineProperty(Object.prototype, 'isString', {
+    value: function() {
+        return Object.prototype.toString.call(this) === '[object String]';
+    },
+    writable: true,
+    configurable: true,
+    enumerable: false
+});
+
+// Check to see if the current object is a boolean.
+Object.defineProperty(Object.prototype, 'isBoolean', {
+    value: function() {
+        return Object.prototype.toString.call(this) === '[object Boolean]';
+    },
+    writeable: true,
+    configurable: true,
+    enumerable: false
+});
+
+
+// Type Conversion Functions
+// -------------------------
+
+// Converts an object that can represent a number into a number.
+//
+// "Test 123.412" will return 123.412
+Object.defineProperty(Object.prototype, 'toNumber', {
+    value: function() {
+        return parseFloat(this.toString().replace(/,/g, '').match(/(\+|-)?((\d+(\.\d+)?)|(\.\d+))/), 10);        
+    },
+    writable: true,
+    configurable: true,
+    enumerable: false
+});
+
+// Converts an object that can represent a boolean into a boolean
+//
+// "test" or 123 will return true.  "asdfas" or 0 will return false.
+Object.defineProperty(Object.prototype, 'toBoolean', {
+    value: function() {
+        return ((this.isNumber() && this.toString() !== '0') ||
+                (this.isString() && this.toString().trim().toLowerCase() === 'true'));
+    },
+    writable: true,
+    configuration: true,
+    enumerable: false
+});

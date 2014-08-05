@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/binaryTree.js</title>
+    <title>Code coverage report for src/base-camp.binaryTree.js</title>
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="../prettify.css">
@@ -196,7 +196,7 @@
 </head>
 <body>
 <div class="header high">
-    <h1>Code coverage report for <span class="entity">src/binaryTree.js</span></h1>
+    <h1>Code coverage report for <span class="entity">src/base-camp.binaryTree.js</span></h1>
     <h2>
         
         Statements: <span class="metric">100% <small>(58 / 58)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -212,7 +212,7 @@
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; binaryTree.js</div>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">src/</a> &#187; base-camp.binaryTree.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
@@ -343,7 +343,25 @@
 125
 126
 127
-128</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">74</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -351,6 +369,8 @@
 <span class="cline-any cline-yes">74</span>
 <span class="cline-any cline-yes">74</span>
 <span class="cline-any cline-yes">74</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -359,6 +379,7 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -374,13 +395,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">73</span>
 <span class="cline-any cline-yes">10</span>
@@ -410,6 +435,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -453,6 +480,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2</span>
@@ -470,7 +498,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">BJ.BinaryTreeNode = function(key, value) {
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// BinaryTree
+// ==========
+&nbsp;
+// The BinaryTreeNode constructor.
+BJ.BinaryTreeNode = function(key, value) {
     
     var that = this;
     
@@ -481,12 +513,15 @@
 &nbsp;
 };
 &nbsp;
+&nbsp;
+// A closure that will return the BinaryTree constructor.
 BJ.BinaryTree = (function () {
 &nbsp;
     var that = this;
     
     that.array = [];
     
+    // Private method used to when creating an array.
     that.addNodesInOrder = function(node) {
         
         if (node.leftNode !== null) {
@@ -501,14 +536,18 @@ BJ.BinaryTree = (function () {
         
     };
     
+    // Returns the BinaryTree constructor.
     return function () {
     
         var _that = this;
         
         _that.rootNode = null;
     
+        // Adds a new to the BinaryTree using recursion.
+        // The node argument should not be used by external callers.
         _that.addNode = function(key, value, node) {
 &nbsp;
+            // If the root node is null create one with our value.
             if (_that.rootNode === null) {
                 _that.rootNode = new BJ.BinaryTreeNode(key, value);
             }
@@ -542,6 +581,8 @@ BJ.BinaryTree = (function () {
 &nbsp;
         };
 &nbsp;
+        // Gets a node by the key using recursion.
+        // The node argument should not be used by external callers.
         _that.getNode = function (key, node) {
 &nbsp;
             if (_that.rootNode === null) {
@@ -580,6 +621,7 @@ BJ.BinaryTree = (function () {
 &nbsp;
         };
 &nbsp;
+        // Creates an array from our binary tree node values sorted by the node keys.
         _that.toArray = function () {
 &nbsp;
             that.array = [];
@@ -602,7 +644,7 @@ BJ.BinaryTree = (function () {
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Aug 03 2014 18:58:50 GMT-0400 (EDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 04 2014 23:46:55 GMT-0400 (EDT)</div>
 </div>
 
 <script src="../prettify.js"></script>

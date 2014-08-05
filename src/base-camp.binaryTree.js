@@ -1,3 +1,7 @@
+// BinaryTree
+// ==========
+
+// The BinaryTreeNode constructor.
 BJ.BinaryTreeNode = function(key, value) {
     
     var that = this;
@@ -9,12 +13,15 @@ BJ.BinaryTreeNode = function(key, value) {
 
 };
 
+
+// A closure that will return the BinaryTree constructor.
 BJ.BinaryTree = (function () {
 
     var that = this;
     
     that.array = [];
     
+    // Private method used to when creating an array.
     that.addNodesInOrder = function(node) {
         
         if (node.leftNode !== null) {
@@ -29,14 +36,18 @@ BJ.BinaryTree = (function () {
         
     };
     
+    // Returns the BinaryTree constructor.
     return function () {
     
         var _that = this;
         
         _that.rootNode = null;
     
+        // Adds a new to the BinaryTree using recursion.
+        // The node argument should not be used by external callers.
         _that.addNode = function(key, value, node) {
 
+            // If the root node is null create one with our value.
             if (_that.rootNode === null) {
                 _that.rootNode = new BJ.BinaryTreeNode(key, value);
             }
@@ -70,6 +81,8 @@ BJ.BinaryTree = (function () {
 
         };
 
+        // Gets a node by the key using recursion.
+        // The node argument should not be used by external callers.
         _that.getNode = function (key, node) {
 
             if (_that.rootNode === null) {
@@ -108,6 +121,7 @@ BJ.BinaryTree = (function () {
 
         };
 
+        // Creates an array from our binary tree node values sorted by the node keys.
         _that.toArray = function () {
 
             that.array = [];

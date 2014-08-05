@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
     
-    var banner = '/*\n<%= pkg.name %> <%= pkg.version %>';
-    banner += ' - <%= pkg.description %>\n';
-    banner += 'Built on <%= grunt.template.today("yyyy-mm-dd") %>\n*/\n\n';
+    var banner = '// Base Jump <%= pkg.version %>\n';
+    banner += '// ==========================\n';
+    banner += '// **A leap forward for your JavaScript objects.**\n\n';
     
     grunt.initConfig({
         
@@ -65,6 +65,15 @@ module.exports = function(grunt) {
                     }
                 }
             }
+        },
+        
+        docco: {
+            debug: {
+                src: ['dist/base-jump.js'],
+                options: {
+                    output: 'docs/'  
+                }
+            }
         }
     });
         
@@ -72,6 +81,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-docco');
   
-    grunt.registerTask('default', ['jshint', 'jasmine', 'concat', 'uglify']);
+    grunt.registerTask('default', ['jshint', 'jasmine', 'concat', 'uglify', 'docco']);
 };
