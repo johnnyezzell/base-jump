@@ -265,6 +265,16 @@ Object.defineProperty(Object.prototype, 'isNumber', {
     enumrable: false
 });
 
+// Check to see if the current object contains a number.
+Object.defineProperty(Object.prototype, 'hasNumber', {
+    value: function() {
+        return !isNaN(parseFloat(this.toString().replace(/,/g, '').match(/(\+|-)?((\d+(\.\d+)?)|(\.\d+))/), 10));        
+    },
+    writable: true,
+    configurable: true,
+    enumerable: false
+});
+
 // Check to see if the current object is a string.
 Object.defineProperty(Object.prototype, 'isString', {
     value: function() {
@@ -284,7 +294,6 @@ Object.defineProperty(Object.prototype, 'isBoolean', {
     configurable: true,
     enumerable: false
 });
-
 
 // ###Type Conversion Functions
 

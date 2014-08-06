@@ -100,6 +100,19 @@ describe('base-camp Object extensions', function() {
 
         });
 
+        describe('hasNumber()', function() {
+            var testNumber = "Test 132.12";
+            var testNotANumber = "Test";
+            
+            it('should return true if the string contains a number', function() {
+                expect(testNumber.hasNumber()).toBe(true); 
+            });
+            
+            it('should return false if the string does not contain a number', function() {
+                expect(testNotANumber.hasNumber()).toBe(false); 
+            });
+        });
+        
         describe('isString()', function() {
 
             var testString = "This is a test string";
