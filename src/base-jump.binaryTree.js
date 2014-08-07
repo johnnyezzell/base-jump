@@ -35,6 +35,18 @@ BJ.BinaryTree = (function () {
         
     };
     
+    // Private method used to return the givin node's minimum child node.
+    that.minimumNode = function(node) {
+        
+        if (node.leftNode !== null) {
+            return minimumNode(node.leftNode);   
+        }
+        else {
+            return node;   
+        }
+    
+    };
+    
     // Returns the BinaryTree constructor.
     return function () {
     
@@ -118,6 +130,51 @@ BJ.BinaryTree = (function () {
                 return node;   
             }
 
+        };
+                
+        // Deletes a node by using the key using recursion.
+        // The node argument should not be used by external callers.
+        _that.deleteNode = function (key) {   
+
+            var node = _that.getNode(key);
+            
+            // We found the node we want to remove.
+            if (typeof node !== 'undefined') {
+                
+                // No children nodes means we can simply delete the node.
+                if (node.rightNode === null && node.leftNode === null) {
+                    node = null;
+                    return;
+                }
+                
+                // Else if there is no left node we can replace this node with the right node.
+                else if (node.leftNode === null) {
+                    node = node.rightNode;
+                    return;
+                }
+                
+                // Else if there is no right node we can replace this node with the left node.
+                else if (node.rightNode === null) {
+                    node = node.leftNode;
+                    return;
+                }
+                
+                // Else if both nodes exist, we will want to replace this node with the minimum right node
+                // by setting the node values
+                else {                
+                    var minRightNode = that.minimumNode(node.rightNode);
+                    node.value = minRightNode.value;
+                    node.key = minRightNode.key;
+                    minRightNode = null;
+                }
+            
+            }
+            
+            // The key we are trying to delete cannot be found.
+            else {
+                throw new Error('invalid key');
+            }
+            
         };
 
         // Creates an array from our binary tree node values sorted by the node keys.

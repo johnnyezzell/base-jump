@@ -268,6 +268,30 @@ Can throw “Index out of range” error.</p>
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-14">&#182;</a>
               </div>
+              <p>Private method used to return the givin node’s minimum child node.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    that.minimumNode = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(node)</span> </span>{
+        
+        <span class="hljs-keyword">if</span> (node.leftNode !== <span class="hljs-literal">null</span>) {
+            <span class="hljs-keyword">return</span> minimumNode(node.leftNode);   
+        }
+        <span class="hljs-keyword">else</span> {
+            <span class="hljs-keyword">return</span> node;   
+        }
+    
+    };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
               <p>Returns the BinaryTree constructor.</p>
 
             </div>
@@ -281,11 +305,11 @@ Can throw “Index out of range” error.</p>
         </li>
         
         
-        <li id="section-15">
+        <li id="section-16">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-15">&#182;</a>
+                <a class="pilcrow" href="#section-16">&#182;</a>
               </div>
               <p>Adds a new to the BinaryTree using recursion.
 The node argument should not be used by external callers.</p>
@@ -297,11 +321,11 @@ The node argument should not be used by external callers.</p>
         </li>
         
         
-        <li id="section-16">
+        <li id="section-17">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-16">&#182;</a>
+                <a class="pilcrow" href="#section-17">&#182;</a>
               </div>
               <p>If the root node is null create one with our value.</p>
 
@@ -343,11 +367,11 @@ The node argument should not be used by external callers.</p>
         </li>
         
         
-        <li id="section-17">
+        <li id="section-18">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-17">&#182;</a>
+                <a class="pilcrow" href="#section-18">&#182;</a>
               </div>
               <p>Gets a node by the key using recursion.
 The node argument should not be used by external callers.</p>
@@ -395,11 +419,142 @@ The node argument should not be used by external callers.</p>
         </li>
         
         
-        <li id="section-18">
+        <li id="section-19">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-18">&#182;</a>
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Deletes a node by using the key using recursion.
+The node argument should not be used by external callers.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        _that.deleteNode = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(key)</span> </span>{   
+
+            <span class="hljs-keyword">var</span> node = _that.getNode(key);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>We found the node we want to remove.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> node !== <span class="hljs-string">'undefined'</span>) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>No children nodes means we can simply delete the node.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">if</span> (node.rightNode === <span class="hljs-literal">null</span> &amp;&amp; node.leftNode === <span class="hljs-literal">null</span>) {
+                    node = <span class="hljs-literal">null</span>;
+                    <span class="hljs-keyword">return</span>;
+                }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Else if there is no left node we can replace this node with the right node.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (node.leftNode === <span class="hljs-literal">null</span>) {
+                    node = node.rightNode;
+                    <span class="hljs-keyword">return</span>;
+                }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Else if there is no right node we can replace this node with the left node.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (node.rightNode === <span class="hljs-literal">null</span>) {
+                    node = node.leftNode;
+                    <span class="hljs-keyword">return</span>;
+                }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Else if both nodes exist, we will want to replace this node with the minimum right node
+by setting the node values</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>                <span class="hljs-keyword">else</span> {                
+                    <span class="hljs-keyword">var</span> minRightNode = that.minimumNode(node.rightNode);
+                    node.value = minRightNode.value;
+                    node.leftNode = minRightNode.leftNode;
+                    node.rightNode = minRightNode.rightNode;
+                    node.key = minRightNode.key;
+                    minRightNode = <span class="hljs-literal">null</span>;
+                }
+            
+            }</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>The key we are trying to delete cannot be found.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-keyword">else</span> {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'invalid key'</span>);
+            }
+            
+        };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
               </div>
               <p>Creates an array from our binary tree node values sorted by the node keys.</p>
 
@@ -427,11 +582,11 @@ The node argument should not be used by external callers.</p>
         </li>
         
         
-        <li id="section-19">
+        <li id="section-27">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-19">&#182;</a>
+                <a class="pilcrow" href="#section-27">&#182;</a>
               </div>
               <h2 id="object-extensions">Object Extensions</h2>
 
@@ -440,11 +595,11 @@ The node argument should not be used by external callers.</p>
         </li>
         
         
-        <li id="section-20">
+        <li id="section-28">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-20">&#182;</a>
+                <a class="pilcrow" href="#section-28">&#182;</a>
               </div>
               <p>Some people will suggest that the following
 methods should never be created.  However, if
@@ -463,11 +618,11 @@ this base-jump method easily. </p>
         </li>
         
         
-        <li id="section-21">
+        <li id="section-29">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-21">&#182;</a>
+                <a class="pilcrow" href="#section-29">&#182;</a>
               </div>
               <p>We ignore functions because this causes problems when
 dealing with two way databinding.  In the future, we may
@@ -485,11 +640,11 @@ the functions.</p>
         </li>
         
         
-        <li id="section-22">
+        <li id="section-30">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-22">&#182;</a>
+                <a class="pilcrow" href="#section-30">&#182;</a>
               </div>
               <p>Create a copy of the current object.
 Arrays will be copied as a value.</p>
@@ -508,11 +663,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-23">
+        <li id="section-31">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-23">&#182;</a>
+                <a class="pilcrow" href="#section-31">&#182;</a>
               </div>
               <h3 id="type-check-functions">Type Check Functions</h3>
 
@@ -521,11 +676,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-24">
+        <li id="section-32">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-24">&#182;</a>
+                <a class="pilcrow" href="#section-32">&#182;</a>
               </div>
               <p>Check to see if the current object is an array.</p>
 
@@ -543,11 +698,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-25">
+        <li id="section-33">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-25">&#182;</a>
+                <a class="pilcrow" href="#section-33">&#182;</a>
               </div>
               <p>Check to see if the curren object is a function.</p>
 
@@ -565,11 +720,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-26">
+        <li id="section-34">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-26">&#182;</a>
+                <a class="pilcrow" href="#section-34">&#182;</a>
               </div>
               <p>Check to see if the current object is a number.</p>
 
@@ -587,11 +742,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-27">
+        <li id="section-35">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-27">&#182;</a>
+                <a class="pilcrow" href="#section-35">&#182;</a>
               </div>
               <p>Check to see if the current object contains a number.</p>
 
@@ -609,11 +764,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-28">
+        <li id="section-36">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-28">&#182;</a>
+                <a class="pilcrow" href="#section-36">&#182;</a>
               </div>
               <p>Check to see if the current object is a string.</p>
 
@@ -631,11 +786,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-29">
+        <li id="section-37">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-29">&#182;</a>
+                <a class="pilcrow" href="#section-37">&#182;</a>
               </div>
               <p>Check to see if the current object is a boolean.</p>
 
@@ -653,11 +808,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-30">
+        <li id="section-38">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-30">&#182;</a>
+                <a class="pilcrow" href="#section-38">&#182;</a>
               </div>
               <h3 id="type-conversion-functions">Type Conversion Functions</h3>
 
@@ -666,11 +821,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-31">
+        <li id="section-39">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-31">&#182;</a>
+                <a class="pilcrow" href="#section-39">&#182;</a>
               </div>
               <p>Converts an object that can represent a number into a number.</p>
 <p>“Test 123.412” will return 123.412</p>
@@ -689,11 +844,11 @@ Arrays will be copied as a value.</p>
         </li>
         
         
-        <li id="section-32">
+        <li id="section-40">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-32">&#182;</a>
+                <a class="pilcrow" href="#section-40">&#182;</a>
               </div>
               <p>Converts an object that can represent a boolean into a boolean</p>
 <p>“test” or 123 will return true.  “asdfas” or 0 will return false.</p>

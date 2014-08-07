@@ -179,14 +179,7 @@ describe('base-camp BinaryTree object and extensions', function() {
             
             var binaryTree = null;
 
-            it('should return an empty array if the root node is null' , function() {
-                
-                binaryTree = new BJ.BinaryTree();
-                expect(binaryTree.toArray().length).toEqual(0);
-                
-            });
-            
-            it('should return an ordered array', function() {
+            beforeEach(function() {
                 
                 binaryTree = new BJ.BinaryTree();
                 binaryTree.addNode(10, 'test10');       // --- root node
@@ -195,8 +188,16 @@ describe('base-camp BinaryTree object and extensions', function() {
                 binaryTree.addNode(8, 'test8');         //   |---- right node
                 binaryTree.addNode(15, 'test15');       //   |-- right node
                 binaryTree.addNode(13, 'test13');       //   |---- left node
-                binaryTree.addNode(17, 'test17');       //   |---- right node
-                
+                binaryTree.addNode(17, 'test17');       //   |---- right node                
+            
+            });
+            
+            it('should return an empty array if the root node is null' , function() {
+                binaryTree = new BJ.BinaryTree();
+                expect(binaryTree.toArray().length).toEqual(0);
+            });
+            
+            it('should return an ordered array', function() {
                 var array = binaryTree.toArray();
                 expect(array[0]).toEqual('test4');
                 expect(array[1]).toEqual('test5');
@@ -205,7 +206,37 @@ describe('base-camp BinaryTree object and extensions', function() {
                 expect(array[4]).toEqual('test13');
                 expect(array[5]).toEqual('test15');
                 expect(array[6]).toEqual('test17');
+            });
+            
+        });
+        
+        describe('deleteNode()', function() {
+            
+            var binaryTree = null;
+            
+            beforeEach(function() {
                 
+                binaryTree = new BJ.BinaryTree();
+                binaryTree.addNode(10, 'test10');       // --- root node
+                binaryTree.addNode(5, 'test5');         //   |-- left node
+                binaryTree.addNode(4, 'test4');         //   |---- left node
+                binaryTree.addNode(8, 'test8');         //   |---- right node
+                binaryTree.addNode(15, 'test15');       //   |-- right node
+                binaryTree.addNode(13, 'test13');       //   |---- left node
+                binaryTree.addNode(17, 'test17');       //   |---- right node                
+            
+            });
+            
+            it('should delete the node from the tree if it\'s found', function() {
+                binaryTree.deleteNode(10);
+                expect(binaryTree.getNode(10)).toBeUndefined();
+                var array = binaryTree.toArray();
+                expect(array[0]).toEqual('test4');
+                expect(array[1]).toEqual('test5');
+                expect(array[2]).toEqual('test8');
+                expect(array[3]).toEqual('test13');
+                expect(array[4]).toEqual('test15');
+                expect(array[5]).toEqual('test17');                
             });
             
         });
